@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<robot name="tactip">
+
+    <link name="base_link"/>
+    <link name="translation_x"/>
+    <link name="translation_y"/>
+    <link name="translation_z"/>
+
+
+    <joint name="x_joint" type="prismatic">
+        <!-- <origin xyz="-0.204 0 0" rpy="0 0 0"/> -->
+        <origin xyz="0 0 0.085" rpy="3.1415 0 0"/>
+        <parent link="base_link"/>
+        <child link="translation_x"/>
+        <axis xyz="1 0 0"/>
+		<limit lower="-0.200000" upper="0.200000"/>
+    </joint>
+
+    <joint name="y_joint" type="prismatic">
+        <!-- <origin xyz="0 0.993 0" rpy="0 0 0"/> -->
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="translation_x"/>
+        <child link="translation_y"/>
+        <axis xyz="0 1 0"/>
+		<limit lower="-0.200000" upper="0.200000"/>
+    </joint>
+
+    <joint name="z_joint" type="fixed">
+        <!-- <origin xyz="0 0 0.958" rpy="0 0 0"/> -->
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="translation_y"/>
+        <child link="translation_z"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+	<link name="tactip_body_link">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.25000"/>
+			<inertia ixx="0.00022" ixy="0" ixz="0" iyy="0.00021" iyz="0" izz="0.00021"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="package://tactile_sim_assets/sensor_assets/standard_tactip/body/tactip_body.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+			<material name="mat_8">
+				<color rgba="0.80000 0.80000 0.80000 1.00000" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="package://tactile_sim_assets/sensor_assets/standard_tactip/body/tactip_body.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+		</collision>
+	</link>
+
+    <joint name="dummy_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="translation_z"/>
+        <child link="tactip_body_link"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+	<link name="tactip_tip_link">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.01000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="package://tactile_sim_assets/sensor_assets/standard_tactip/tip/skin.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+			<material name="mat_9">
+				<color rgba="0.00000 0.00000 1.00000 0.00000" />
+			</material>
+		</visual>
+		<!-- <collision>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="package://tactile_sim_assets/sensor_assets/standard_tactip/tip/core.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+		</collision> -->
+	</link>
+
+	<joint name="tactip_tip_to_body" type="fixed">
+		<parent link="tactip_body_link"/>
+		<child link="tactip_tip_link"/> 
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="1.57000 -0.00000 0.00000" xyz="0.00000 0.00000 0.06500"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+<!-- this is a fake link for attaching the camera -->
+	<link name="elastomer_tip">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.00000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+			<material name="mat_10">
+				<color rgba="0.90000 0.00000 0.20000 0.50000" />
+			</material>
+		</visual>
+	</link>
+	<joint name="dummy_camera_joint" type="fixed">
+		<parent link="tactip_tip_link"/>
+		<child link="elastomer_tip"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="-1.57 -0.00000 0.00000" xyz="0.00000 0.02 -0.0"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+
+
+
+
+	<link name="tcp_link">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.00000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+			<material name="mat_10">
+				<color rgba="0.90000 0.00000 0.20000 0.50000" />
+			</material>
+		</visual>
+	</link>
+	<joint name="tcp_joint" type="fixed">
+		<parent link="tactip_body_link"/>
+		<child link="tcp_link"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.08500"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+
+</robot>

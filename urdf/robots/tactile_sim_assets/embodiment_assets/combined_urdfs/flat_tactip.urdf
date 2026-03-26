@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<robot name="flat_tactip">
+
+
+	<link name="ee_link">
+		<inertial>
+			<origin rpy="-3.14000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.00000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+			<material name="mat_7">
+				<color rgba="0.90000 0.00000 0.20000 1.00000" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+		</collision>
+	</link>
+	<link name="tactip_body_link">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.25000"/>
+			<inertia ixx="0.00022" ixy="0" ixz="0" iyy="0.00021" iyz="0" izz="0.00021"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="../sensor_assets/flat_tactip/../standard_tactip/body/tactip_body.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+			<material name="mat_8">
+				<color rgba="0.80000 0.80000 0.80000 1.00000" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="../sensor_assets/flat_tactip/../standard_tactip/body/tactip_body.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+		</collision>
+	</link>
+	<link name="tactip_tip_link">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.01000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="../sensor_assets/flat_tactip/tip/skin.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+			<material name="mat_9">
+				<color rgba="0.00000 0.00000 0.00000 1.00000" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="../sensor_assets/flat_tactip/tip/core.obj" scale="1.00000 1.00000 1.00000"/>
+			</geometry>
+		</collision>
+	</link>
+
+
+
+	<joint name="joint_dummy1" type="fixed">
+		<parent link="ee_link"/>
+		<child link="tactip_body_link"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="-3.14159 0.00000 3.14159" xyz="0.00000 0.00000 0.00000"/>
+		<axis xyz="0.00000 0.00000 1.00000"/>
+	</joint>
+	<joint name="tactip_tip_to_body" type="fixed">
+		<parent link="tactip_body_link"/>
+		<child link="tactip_tip_link"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="1.57000 -0.00000 0.00000" xyz="0.00000 0.00000 0.06500"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+    <link name="elastomer_tip"/>    <!-- surface tip of the elastomer  -->
+    <joint name="elastomer_tip_joint" type="fixed">
+        <origin rpy="3.141592653589793 0 0" xyz="-0.00050001 -0.05975001 -0.01125"/>
+        <parent link="tactip_body_link"/>
+        <child link="elastomer_tip"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="camera_link"/>
+    <joint name="tactile_camera_joint" type="fixed">
+        <parent link="tactip_body_link"/>
+        <child link="camera_link"/>
+        <origin rpy="0.0 0.0 -1.5708" xyz="4.23776324e-07 5.08471039e-02 6.77599066e-02"/>
+    </joint>
+
+</robot>

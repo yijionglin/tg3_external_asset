@@ -243,9 +243,9 @@
 			</material>
 		</visual>
 		<collision>
-			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 -0.00200 0.00000"/>
 			<geometry>
-				<mesh filename="../sensor_assets/right_angle_tactip/../standard_tactip/tip/core.obj" scale="1.00000 1.00000 1.00000"/>
+				<mesh filename="../sensor_assets/right_angle_tactip/../standard_tactip/tip/core.obj" scale="1.00000 0.9 1.0"/>
 			</geometry>
 		</collision>
 	</link>

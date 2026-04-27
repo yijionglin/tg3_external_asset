@@ -1,0 +1,22 @@
+<robot name="camera">
+	<link name="_name">
+		<visual>
+			<origin xyz="-0.004941934100832452 0.003306411883695409 0.006593431127655624" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="camera_vhacd.obj" scale="0.55 0.55 0.55" />
+			</geometry>
+       		<material name="red">
+        		<color rgba="0.9 0 0.2 1.0"/>
+      		</material>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="camera_vhacd.obj" scale="0.55 0.55 0.55" />
+			</geometry>
+		<origin xyz="-0.004941934100832452 0.003306411883695409 0.006593431127655624" rpy="0 0 0" /></collision>
+		<inertial>
+			<mass value="1.0" />
+			<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+		</inertial>
+	</link>
+</robot>

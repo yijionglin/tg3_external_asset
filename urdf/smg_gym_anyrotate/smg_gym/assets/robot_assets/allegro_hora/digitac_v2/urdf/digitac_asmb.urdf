@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="URDF.SLDASM">
+  <link
+    name="shell">
+    <inertial>
+      <origin
+        xyz="0.0001975605647068 -0.00118367480029045 0.00131122535491753"
+        rpy="0 0 0" />
+      <mass
+        value="0.00302316737105698" />
+      <inertia
+        ixx="4.317709107102E-07"
+        ixy="3.7521793126441E-14"
+        ixz="-1.4297619885974E-13"
+        iyy="5.90726203447095E-07"
+        iyz="4.11669510834951E-09"
+        izz="2.62862002776921E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://URDF.SLDASM/meshes/shell.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://URDF.SLDASM/meshes/shell.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="skin">
+    <inertial>
+      <origin
+        xyz="-8.83563558906272E-10 0.00928377249438958 -4.69758738418785E-10"
+        rpy="0 0 0" />
+      <mass
+        value="0.0141334199432343" />
+      <inertia
+        ixx="1.97205758958518E-06"
+        ixy="1.30236542750782E-13"
+        ixz="-1.91979296408372E-13"
+        iyy="2.5905085143408E-06"
+        iyz="3.71540430992269E-14"
+        izz="1.4162342440406E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://URDF.SLDASM/meshes/skin.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.317647058823529 0.247058823529412 0.207843137254902 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://URDF.SLDASM/meshes/skin.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Axis"
+    type="continuous">
+    <origin
+      xyz="0.000197564177104219 -0.00200000000000954 0.00879327483833061"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="shell" />
+    <child
+      link="skin" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+</robot>

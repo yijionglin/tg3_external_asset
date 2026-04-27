@@ -1,0 +1,1192 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="allegro_hand_right">
+  
+  
+  
+  
+  
+  
+
+  
+  <material name="DarkGrey">
+    <color rgba="0.2 0.2 0.2 1.0" />
+  </material>
+  <material name="Grey">
+    <color rgba="0.4 0.4 0.4 1.0" />
+  </material>
+  <material name="Orange">
+    <color rgba="1.0 0.423529411765 0.0392156862745 1.0" />
+  </material>
+  <material name="Blue">
+    <color rgba="0 0.1 1.0 1.0" />
+  </material>
+  <material name="LightGrey">
+    <color rgba="0.7 0.7 0.7 1.0" />
+  </material>
+  <material name="Red">
+    <color rgba="0.9 0 0.2 1.0" />
+  </material>
+  <material name="Green">
+    <color rgba="0 0.9 0.5 1.0" />
+  </material>
+  <material name="Yellow">
+    <color rgba="0.7 0.7 0 1.0" />
+  </material>
+  <material name="LightBlue">
+    <color rgba="0. 0.3 1.0 1.0" />
+  </material>
+  <material name="Black">
+    <color rgba="0.05 0.05 0.05 1.0" />
+  </material>
+  <material name="White">
+    <color rgba="1.0 1.0 1.0 1.0" />
+  </material>
+  <material name="TacTipWhite">
+   <color rgba="0.8 0.8 0.8 1.0" />
+ </material>
+ <material name="TransparentRed">
+   <color rgba="0.9 0 0.2 0.5" />
+ </material>
+
+  <!-- World link -->
+  <link name="world"/>
+  <!-- Fixed joint anchoring Allegro to world -->
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 1.57 0"/>
+  </joint>
+  <link name="base_link">
+    <visual name="base_link_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/base_link.obj" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0 " />
+      <material name="black">
+        <color rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.009300 0 -0.0475"/>
+      <geometry>
+        <!-- <box size="0.0408 0.1130 0.095"/> -->
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+    
+  </link>
+  
+  
+  
+  
+  
+  <link name="link_0_0">
+    <visual name="link_0_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_0_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_0_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0164" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0082" />
+    </collision>
+    <inertial>
+      <mass value="0.0119" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06" />
+    </inertial>
+  </link>
+  <joint name="joint_0_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit effort="0.35" lower="-0.47" upper="0.47" velocity="6.283" />
+    <parent link="base_link" />
+    <child link="link_0_0" />
+    <origin rpy="-0.08726646255 0 0" xyz="0 0.0435 -0.001542" />
+     <dynamics damping="3" friction="10" />
+  </joint>
+  <link name="link_1_0">
+    <visual name="link_1_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_1_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_1_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.054" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.027" />
+    </collision>
+    <inertial>
+      <mass value="0.065" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_1_0" type="revolute">
+    <limit effort="0.35" lower="-0.196" upper="1.61" velocity="6.283" />
+    <axis xyz="0 1 0" />
+    <parent link="link_0_0" />
+    <child link="link_1_0" />
+    <origin xyz="0 0 0.0164" />
+    <dynamics damping="3" friction="5" />
+  </joint>
+  <link name="link_2_0">
+    <visual name="link_2_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_2_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_2_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0384" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0192" />
+    </collision>
+    <inertial>
+      <mass value="0.0355" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_2_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.174" upper="1.709" velocity="6.283" />
+    <parent link="link_1_0" />
+    <child link="link_2_0" />
+    <origin xyz="0 0 0.054" />
+    <dynamics damping="8" friction="10" />
+  </joint>
+  <link name="link_3_0">
+    <visual name="link_3_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_3_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_3_0_collision_0">
+      <geometry>
+        <sphere radius="0.0001" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.01335" />
+    </collision>
+    <inertial>
+      <mass value="0.0096" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06" />
+    </inertial>
+  </link>
+  <joint name="joint_3_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.227" upper="1.618" velocity="6.283" />
+    <parent link="link_2_0" />
+    <child link="link_3_0" />
+    <origin xyz="0 0 0.0384" />
+     <dynamics damping="10" friction="12" />
+  </joint>
+
+  
+  <link name="ee_link_3">
+    <visual name="ee_link_3_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+        <material name="Red" />
+    </visual>
+    <collision name="ee_link_3_collision_0">
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0 0" />
+    </collision>
+    <inertial>
+      <mass value="0.0" />
+      <origin rpy="-3.14 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <joint name="ee_joint_3" type="fixed">
+    <parent link="link_3_0" />
+    <child link="ee_link_3" />
+    <origin rpy="1.57 3.14 0.0" xyz="0.0 0.0 0.0156" />
+  </joint>
+
+  
+  <link name="digitac_body_link_3">
+    <inertial>
+      <origin xyz="0.00263688056092071 -0.00262884899763214 0.0109110630233869" rpy="0 0 0" />
+      <mass value="0.00531098627730121" />
+      <inertia ixx="8.82240287506628E-07" ixy="-3.13322980743593E-10" ixz="3.60719521066332E-12" iyy="6.15782444974971E-07" iyz="-1.30591073240996E-08" izz="1.13139643974096E-06" />
+    </inertial>
+    <visual name="digitac_body_link_3_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+      <material name="body_color">
+        <color rgba="0.0 0.0 0.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_body_link_3_collision_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  
+  
+
+  
+  <joint name="digitac_ee_joint_3" type="fixed">
+      <parent link="ee_link_3" />
+      <child link="digitac_body_link_3" />
+      <origin rpy="1.57 0.0 0.0" xyz="-0.003 -0.022 0.011" />
+  </joint>
+
+  <link name="digitac_connect_link_3">
+    <inertial>
+      <origin xyz="0.0139936240090609 -0.00408071914940386 0.00181399367094888" rpy="0 0 0" />
+      <mass value="0.000139255177268593" />
+      <inertia ixx="2.05079374402594E-08" ixy="-7.09037183531674E-12" ixz="-1.3229011237761E-12" iyy="1.46494310108244E-08" iyz="-1.02996780562249E-11" izz="3.49457158547085E-08" />
+    </inertial>
+    <visual name="digitac_connect_link_3_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Rigid.STL" />
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    
+  </link>
+
+  <joint name="digitac_connect_to_body_3" type="fixed">
+    <origin xyz="-0.0113560896114318 0.00129031259203606 0.00274423197111925" rpy="1.5707963267949 0 0" />
+    <parent link="digitac_body_link_3" />
+    <child link="digitac_connect_link_3" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="digitac_tip_link_3">
+    <inertial>
+      <origin xyz="0.0140017121571056 -0.00401105354165666 -0.00666035297507206" rpy="0 0 0" />
+      <mass value="0.00188685440856045" />
+      <inertia ixx="2.29183868463607E-07" ixy="1.87828029976501E-11" ixz="-8.0783946037388E-12" iyy="1.65268472737511E-07" iyz="1.527419786212E-10" izz="3.22037979580595E-07" />
+    </inertial>
+    <visual name="digitac_tip_link_3_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL" />
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_tip_link_3_collision_0">
+      <origin xyz="0 0 0.0035" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL"  scale="0.9 0.9 0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="digitac_tip_to_connect_3" type="fixed">
+    <origin xyz="0.014 -0.004 -0.014" rpy="0 0 1.57" />
+    <parent link="digitac_connect_link_3" />
+    <child link="digitac_tip_link_3" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  
+  <link name="link_3_tcp">
+    <visual name="link_3_tcp_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+       <material name="TransparentRed" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_3_tcp" type="fixed">
+    <parent link="digitac_body_link_3" />
+    <child link="link_3_tcp" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.002 0.0 -0.0015" />
+  </joint>
+
+  <link name="link_4_0">
+    <visual name="link_4_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_0_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_4_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0164" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0082" />
+    </collision>
+    <inertial>
+      <mass value="0.0119" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06" />
+    </inertial>
+  </link>
+  <joint name="joint_4_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit effort="0.35" lower="-0.47" upper="0.47" velocity="6.283" />
+    <parent link="base_link" />
+    <child link="link_4_0" />
+    <origin rpy="0.0 0 0" xyz="0 0 0.0007" />
+    <dynamics damping="3" friction="10" />
+  </joint>
+  <link name="link_5_0">
+    <visual name="link_5_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_1_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_5_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.054" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.027" />
+    </collision>
+    <inertial>
+      <mass value="0.065" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_5_0" type="revolute">
+    <limit effort="0.35" lower="-0.196" upper="1.61" velocity="6.283" />
+    <axis xyz="0 1 0" />
+    <parent link="link_4_0" />
+    <child link="link_5_0" />
+    <origin xyz="0 0 0.0164" />
+    <dynamics damping="3" friction="5" />
+  </joint>
+  <link name="link_6_0">
+    <visual name="link_6_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_2_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_6_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0384" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0192" />
+    </collision>
+    <inertial>
+      <mass value="0.0355" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_6_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.174" upper="1.709" velocity="6.283" />
+    <parent link="link_5_0" />
+    <child link="link_6_0" />
+    <origin xyz="0 0 0.054" />
+    <dynamics damping="8" friction="10" />
+  </joint>
+  <link name="link_7_0">
+    <visual name="link_7_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_3_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_7_0_collision_0">
+      <geometry>
+        <sphere radius="0.0001" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.01335" />
+    </collision>
+    <inertial>
+      <mass value="0.0096" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06" />
+    </inertial>
+  </link>
+  <joint name="joint_7_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.227" upper="1.618" velocity="6.283" />
+    <parent link="link_6_0" />
+    <child link="link_7_0" />
+    <origin xyz="0 0 0.0384" />
+     <dynamics damping="10" friction="12" />
+  </joint>
+
+  
+  <link name="ee_link_7">
+    <visual name="ee_link_7_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+        <material name="Red" />
+    </visual>
+    <collision name="ee_link_7_collision_0">
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0 0" />
+    </collision>
+    <inertial>
+      <mass value="0.0" />
+      <origin rpy="-3.14 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <joint name="ee_joint_7" type="fixed">
+    <parent link="link_7_0" />
+    <child link="ee_link_7" />
+    <origin rpy="1.57 3.14 0.0" xyz="0.0 0.0 0.0156" />
+  </joint>
+
+  
+  <link name="digitac_body_link_7">
+    <inertial>
+      <origin xyz="0.00263688056092071 -0.00262884899763214 0.0109110630233869" rpy="0 0 0" />
+      <mass value="0.00531098627730121" />
+      <inertia ixx="8.82240287506628E-07" ixy="-3.13322980743593E-10" ixz="3.60719521066332E-12" iyy="6.15782444974971E-07" iyz="-1.30591073240996E-08" izz="1.13139643974096E-06" />
+    </inertial>
+    <visual name="digitac_body_link_7_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+      <material name="body_color">
+        <color rgba="0.0 0.0 0.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_body_link_7_collision_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="digitac_ee_joint_7" type="fixed">
+      <parent link="ee_link_7" />
+      <child link="digitac_body_link_7" />
+      <origin rpy="1.57 -1.57 0.0" xyz="-0.0135 -0.022 -0.0025" />
+  </joint>
+
+  <link name="digitac_connect_link_7">
+    <inertial>
+      <origin xyz="0.0139936240090609 -0.00408071914940386 0.00181399367094888" rpy="0 0 0" />
+      <mass value="0.000139255177268593" />
+      <inertia ixx="2.05079374402594E-08" ixy="-7.09037183531674E-12" ixz="-1.3229011237761E-12" iyy="1.46494310108244E-08" iyz="-1.02996780562249E-11" izz="3.49457158547085E-08" />
+    </inertial>
+    <visual name="digitac_connect_link_7_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Rigid.STL"/>
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    
+  </link>
+
+  <joint name="digitac_connect_to_body_7" type="fixed">
+    <origin xyz="-0.0113560896114318 0.00129031259203606 0.00274423197111925" rpy="1.5707963267949 0 0" />
+    <parent link="digitac_body_link_7" />
+    <child link="digitac_connect_link_7" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="digitac_tip_link_7">
+    <inertial>
+      <origin xyz="0.0140017121571056 -0.00401105354165666 -0.00666035297507206" rpy="0 0 0" />
+      <mass value="0.00188685440856045" />
+      <inertia ixx="2.29183868463607E-07" ixy="1.87828029976501E-11" ixz="-8.0783946037388E-12" iyy="1.65268472737511E-07" iyz="1.527419786212E-10" izz="3.22037979580595E-07" />
+    </inertial>
+    <visual name="digitac_tip_link_7_visual_0">
+      <origin xyz="0 0 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL"  scale="1 1 1"/>
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_tip_link_7_collision_0">
+      <origin xyz="0 0 0.0035" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL"  scale="0.9 0.9 0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="digitac_tip_to_connect_7" type="fixed">
+    <origin xyz="0.014 -0.004 -0.014" rpy="0 0 1.57" />
+    <parent link="digitac_connect_link_7" />
+    <child link="digitac_tip_link_7" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  
+  <link name="link_7_tcp">
+    <visual name="link_7_tcp_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0001" />
+      </geometry>
+       <material name="TransparentRed" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_7_tcp" type="fixed">
+    <parent link="digitac_body_link_7" />
+    <child link="link_7_tcp" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.002 0.0 -0.0015" />
+  </joint>
+
+  <!-- <link name="link_7_camera_0">
+    <visual name="link_7_camera_0_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.001" />
+      </geometry>
+       <material name="Yellow" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_link_7_camera_0" type="fixed">
+    <parent link="digitac_body_link_7" />
+    <child link="link_7_camera_0" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.002 0.01 -0.0015" />
+  </joint>
+  
+  <link name="link_7_camera_1">
+    <visual name="link_7_camera_1_visual_1">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.001" />
+      </geometry>
+       <material name="Blue" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_link_7_camera_1" type="fixed">
+    <parent link="digitac_body_link_7" />
+    <child link="link_7_camera_1" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.01 -0.00 -0.0015" />
+  </joint>
+
+  <link name="link_7_camera_2">
+    <visual name="link_7_camera_2_visual_2">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.001" />
+      </geometry>
+       <material name="Yellow" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_link_7_camera_2" type="fixed">
+    <parent link="digitac_body_link_7" />
+    <child link="link_7_camera_2" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.002 -0.01 -0.0015" />
+  </joint>
+  
+  <link name="link_7_camera_3">
+    <visual name="link_7_camera_3_visual_3">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.001" />
+      </geometry>
+       <material name="Blue" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_link_7_camera_3" type="fixed">
+    <parent link="digitac_body_link_7" />
+    <child link="link_7_camera_3" />
+    <origin rpy="0.0 0.0 0.0" xyz="-0.005 0.0 -0.0015" />
+  </joint> -->
+
+  <link name="link_8_0">
+    <visual name="link_8_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_0_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_8_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0164" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0082" />
+    </collision>
+    <inertial>
+      <mass value="0.0119" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06" />
+    </inertial>
+  </link>
+  <joint name="joint_8_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit effort="0.35" lower="-0.47" upper="0.47" velocity="6.283" />
+    <parent link="base_link" />
+    <child link="link_8_0" />
+    <origin rpy="0.08726646255 0 0" xyz="0 -0.0435 -0.001542" />
+    <dynamics damping="3" friction="10" />
+  </joint>
+  <link name="link_9_0">
+    <visual name="link_9_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_1_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_9_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.054" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.027" />
+    </collision>
+    <inertial>
+      <mass value="0.065" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_9_0" type="revolute">
+    <limit effort="0.35" lower="-0.196" upper="1.61" velocity="6.283" />
+    <axis xyz="0 1 0" />
+    <parent link="link_8_0" />
+    <child link="link_9_0" />
+    <origin xyz="0 0 0.0164" />
+    <dynamics damping="3" friction="5" />
+  </joint>
+  <link name="link_10_0">
+    <visual name="link_10_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_2_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_10_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0384" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0192" />
+    </collision>
+    <inertial>
+      <mass value="0.0355" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_10_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.174" upper="1.709" velocity="6.283" />
+    <parent link="link_9_0" />
+    <child link="link_10_0" />
+    <origin xyz="0 0 0.054" />
+    <dynamics damping="8" friction="10" />
+  </joint>
+  <link name="link_11_0">
+    <visual name="link_11_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_3_0.obj" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision name="link_11_0_collision_0">
+      <geometry>
+        <sphere radius="0.0001" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.01335" />
+    </collision>
+    <inertial>
+      <mass value="0.0096" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06" />
+    </inertial>
+  </link>
+  <joint name="joint_11_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.227" upper="1.618" velocity="6.283" />
+    <parent link="link_10_0" />
+    <child link="link_11_0" />
+    <origin xyz="0 0 0.0384" />
+    <dynamics damping="10" friction="12" />
+  </joint>
+
+  
+  <link name="ee_link_11">
+    <visual name="ee_link_11_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+        <material name="Red" />
+    </visual>
+    <collision name="ee_link_11_collision_0">
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0 0" />
+    </collision>
+    <inertial>
+      <mass value="0.0" />
+      <origin rpy="-3.14 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <joint name="ee_joint_11" type="fixed">
+    <parent link="link_11_0" />
+    <child link="ee_link_11" />
+    <origin rpy="1.57 3.14 0.0" xyz="0.0 0.0 0.0156" />
+  </joint>
+
+  
+  <link name="digitac_body_link_11">
+    <inertial>
+      <origin xyz="0.00263688056092071 -0.00262884899763214 0.0109110630233869" rpy="0 0 0" />
+      <mass value="0.00531098627730121" />
+      <inertia ixx="8.82240287506628E-07" ixy="-3.13322980743593E-10" ixz="3.60719521066332E-12" iyy="6.15782444974971E-07" iyz="-1.30591073240996E-08" izz="1.13139643974096E-06" />
+    </inertial>
+    <visual name="digitac_body_link_11_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+      <material name="body_color">
+        <color rgba="0.0 0.0 0.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_body_link_11_collision_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  
+  
+
+  
+  <joint name="digitac_ee_joint_11" type="fixed">
+      <parent link="ee_link_11" />
+      <child link="digitac_body_link_11" />
+      <origin rpy="1.57 -3.14 0.0" xyz="0.003 -0.022 -0.011" />
+  </joint>
+
+  <link name="digitac_connect_link_11">
+    <inertial>
+      <origin xyz="0.0139936240090609 -0.00408071914940386 0.00181399367094888" rpy="0 0 0" />
+      <mass value="0.000139255177268593" />
+      <inertia ixx="2.05079374402594E-08" ixy="-7.09037183531674E-12" ixz="-1.3229011237761E-12" iyy="1.46494310108244E-08" iyz="-1.02996780562249E-11" izz="3.49457158547085E-08" />
+    </inertial>
+    <visual name="digitac_connect_link_11_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Rigid.STL" />
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    
+  </link>
+
+  <joint name="digitac_connect_to_body_11" type="fixed">
+    <origin xyz="-0.0113560896114318 0.00129031259203606 0.00274423197111925" rpy="1.5707963267949 0 0" />
+    <parent link="digitac_body_link_11" />
+    <child link="digitac_connect_link_11" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="digitac_tip_link_11">
+    <inertial>
+      <origin xyz="0.0140017121571056 -0.00401105354165666 -0.00666035297507206" rpy="0 0 0" />
+      <mass value="0.00188685440856045" />
+      <inertia ixx="2.29183868463607E-07" ixy="1.87828029976501E-11" ixz="-8.0783946037388E-12" iyy="1.65268472737511E-07" iyz="1.527419786212E-10" izz="3.22037979580595E-07" />
+    </inertial>
+    <visual name="digitac_tip_link_11_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL" />
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_tip_link_11_collision_0">
+      <origin xyz="0 0 0.0035" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL"  scale="0.9 0.9 0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="digitac_tip_to_connect_11" type="fixed">
+    <origin xyz="0.014 -0.004 -0.014" rpy="0 0 1.57" />
+    <parent link="digitac_connect_link_11" />
+    <child link="digitac_tip_link_11" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  
+  <link name="link_11_tcp">
+    <visual name="link_11_tcp_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+       <material name="TransparentRed" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_11_tcp" type="fixed">
+    <parent link="digitac_body_link_11" />
+    <child link="link_11_tcp" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.002 0.0 -0.0015" />
+  </joint>
+
+  <link name="link_12_0">
+    <visual name="link_12_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_12_0_right.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba=".2 .2 .2 1" />
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+    </visual>
+    <collision name="link_12_0_collision_0">
+      <geometry>
+        <box size="0.0358 0.034 0.0455" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="-0.0179 0.009 0.0145" />
+    </collision>
+    <inertial>
+      <mass value="0.0176" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1.89273333333e-5" ixy="7.16716e-06" ixz="5.35568e-06" iyy="1.43008213333e-05" iyz="6.8068e-06" izz="1.89273333333e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_12_0" type="revolute">
+    <axis xyz="-1 0 0" />
+    <limit effort="0.35" lower="0.263" upper="1.396" velocity="6.283" />
+    <parent link="base_link" />
+    <child link="link_12_0" />
+    <origin rpy="0 -1.65806278845 -1.5707963259" xyz="-0.0182 0.019333 -0.045987" />
+    <dynamics damping="3" friction="10" />
+  </joint>
+  <link name="link_13_0">
+    <visual name="link_13_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_13_0.obj" />
+      </geometry>
+      <material name="black">
+        <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+    <collision name="link_13_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0177" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.00885" />
+    </collision>
+    <inertial>
+      <mass value="0.0119" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="4.24250866667e-06" ixy="1.032087e-06" ixz="1.603525e-06" iyy="4.52362633333e-06" iyz="1.44808125e-06" izz="4.24250866667e-06" />
+    </inertial>
+  </link>
+  <joint name="joint_13_0" type="revolute">
+    <axis xyz="0 0 1" />
+    <limit effort="0.35" lower="-0.105" upper="1.163" velocity="6.283" />
+    <parent link="link_12_0" />
+    <child link="link_13_0" />
+    
+    <origin xyz="-0.027 0.005 0.0399" />
+    
+    
+    <dynamics damping="3" friction="5" />
+  </joint>
+  <link name="link_14_0">
+    <visual name="link_14_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_14_0.obj" />
+      </geometry>
+      <material name="black">
+      </material>
+    </visual>
+    <collision name="link_14_0_collision_0">
+      <geometry>
+        <box size="0.0196 0.0275 0.0514" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0257" />
+    </collision>
+    <inertial>
+      <mass value="0.038" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="4.30439933333e-05" ixy="9.57068e-06" ixz="5.1205e-06" iyy="1.44451933333e-05" iyz="1.342825e-05" izz="4.30439933333e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_14_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.189" upper="1.644" velocity="6.283" />
+    <parent link="link_13_0" />
+    <child link="link_14_0" />
+    <origin xyz="0 0 0.0177" />
+    <dynamics damping="3" friction="10" />
+  </joint>
+  <link name="link_15_0">
+    <visual name="link_15_0_visual_0">
+      <geometry>
+        <mesh filename="meshes/allegro/link_15_0.obj" />
+      </geometry>
+      <material name="black">
+      </material>
+    </visual>
+    <collision name="link_15_0_collision_0">
+      <geometry>
+        <sphere radius="0.0001" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.02115" />
+    </collision>
+    <inertial>
+      <mass value="0.0388" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="3.29223173333e-05" ixy="8.042076e-06" ixz="5.2283e-06" iyy="1.47493026667e-5" iyz="1.1283525e-5" izz="3.29223173333e-05" />
+    </inertial>
+  </link>
+  <joint name="joint_15_0" type="revolute">
+    <axis xyz="0 1 0" />
+    <limit effort="0.35" lower="-0.162" upper="1.719" velocity="6.283" />
+    <parent link="link_14_0" />
+    <child link="link_15_0" />
+    <origin xyz="0 0 0.0514" />
+    <dynamics damping="3" friction="12" />
+  </joint>
+
+  
+  <link name="ee_link_15">
+    <visual name="ee_link_15_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+        <material name="Red" />
+    </visual>
+    <collision name="ee_link_15_collision_0">
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0 0" />
+    </collision>
+    <inertial>
+      <mass value="0.0" />
+      <origin rpy="-3.14 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <joint name="ee_joint_15" type="fixed">
+    <parent link="link_15_0" />
+    <child link="ee_link_15" />
+    <origin rpy="1.57 3.14 0.0" xyz="0.0 0.0 0.0313" />
+  </joint>
+
+
+  
+  <link name="digitac_body_link_15">
+    <inertial>
+      <origin xyz="0.00263688056092071 -0.00262884899763214 0.0109110630233869" rpy="0 0 0" />
+      <mass value="0.00531098627730121" />
+      <inertia ixx="8.82240287506628E-07" ixy="-3.13322980743593E-10" ixz="3.60719521066332E-12" iyy="6.15782444974971E-07" iyz="-1.30591073240996E-08" izz="1.13139643974096E-06" />
+    </inertial>
+    <visual name="digitac_body_link_15_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+      <material name="body_color">
+        <color rgba="0.0 0.0 0.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_body_link_15_collision_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Mount.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  
+
+  
+  <joint name="digitac_ee_joint_15" type="fixed">
+      <parent link="ee_link_15" />
+      <child link="digitac_body_link_15" />
+      <origin rpy="1.57 -0.785 0.0" xyz="-0.013 -0.022 0.004" />
+  </joint> 
+
+  <link name="digitac_connect_link_15">
+    <inertial>
+      <origin xyz="0.0139936240090609 -0.00408071914940386 0.00181399367094888" rpy="0 0 0" />
+      <mass value="0.000139255177268593" />
+      <inertia ixx="2.05079374402594E-08" ixy="-7.09037183531674E-12" ixz="-1.3229011237761E-12" iyy="1.46494310108244E-08" iyz="-1.02996780562249E-11" izz="3.49457158547085E-08" />
+    </inertial>
+    <visual name="digitac_connect_link_15_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Rigid.STL" />
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    
+  </link>
+
+  <joint name="digitac_connect_to_body_15" type="fixed">
+    <origin xyz="-0.0113560896114318 0.00129031259203606 0.00274423197111925" rpy="1.5707963267949 0 0" />
+    <parent link="digitac_body_link_15" />
+    <child link="digitac_connect_link_15" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="digitac_tip_link_15">
+    <inertial>
+      <origin xyz="0.0140017121571056 -0.00401105354165666 -0.00666035297507206" rpy="0 0 0" />
+      <mass value="0.00188685440856045" />
+      <inertia ixx="2.29183868463607E-07" ixy="1.87828029976501E-11" ixz="-8.0783946037388E-12" iyy="1.65268472737511E-07" iyz="1.527419786212E-10" izz="3.22037979580595E-07" />
+    </inertial>
+    <visual name="digitac_tip_link_15_visual_0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL" />
+      </geometry>
+      <material name="digitac_skin">
+        <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </visual>
+    <collision name="digitac_tip_link_15_collision_0">
+      <origin xyz="0 0 0.0035" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="digitac_v2_final/meshes/Soft_no_pins.STL"  scale="0.9 0.9 0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="digitac_tip_to_connect_15" type="fixed">
+    <origin xyz="0.014 -0.004 -0.014" rpy="0 0 1.57" />
+    <parent link="digitac_connect_link_15" />
+    <child link="digitac_tip_link_15" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  
+  <link name="link_15_tcp">
+    <visual name="link_15_tcp_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.0005" />
+      </geometry>
+       <material name="TransparentRed" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="joint_15_tcp" type="fixed">
+    <parent link="digitac_body_link_15" />
+    <child link="link_15_tcp" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.002 0.0 -0.0015" />
+  </joint>
+
+  <link name="pivot_point_link">
+    <visual name="pivot_point_link_visual_0">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+       <material name="Yellow" />
+    </visual>
+    <inertial>
+      <mass value="0.001" />
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <inertia ixx="1.0E-08" ixy="0.0" ixz="0.0" iyy="1.0E-08" iyz="0.0" izz="1.0E-08" />
+    </inertial>
+  </link>
+
+  <joint name="pivot_point_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="pivot_point_link" />
+    <origin rpy="-1.57 0.0 -1.57" xyz="0.25 0.0 0.0" />
+  </joint>
+
+
+  
+  
+  
+  
+  
+</robot>

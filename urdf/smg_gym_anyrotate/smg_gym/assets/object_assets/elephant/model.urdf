@@ -1,0 +1,22 @@
+<robot name="elephant">
+	<link name="_name">
+		<visual>
+			<origin xyz="-0.008427014869583265 1.7881269135539368e-09 -0.012357909365616863" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="elephant_vhacd.obj" scale="0.7 0.7 0.7" />
+			</geometry>
+       		<material name="red">
+        		<color rgba="0.9 0 0.2 1.0"/>
+      		</material>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="elephant_vhacd.obj" scale="0.7 0.7 0.7" />
+			</geometry>
+		<origin xyz="-0.008427014869583265 1.7881269135539368e-09 -0.012357909365616863" rpy="0 0 0" /></collision>
+		<inertial>
+			<mass value="1.0" />
+			<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+		</inertial>
+	</link>
+</robot>

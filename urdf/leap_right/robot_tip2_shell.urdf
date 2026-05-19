@@ -1,0 +1,1174 @@
+<robot name="onshape">
+
+  <material name="TransparentRed">
+    <color rgba="0.9 0 0.2 0.5"/>
+  </material>
+
+  <!-- World link -->
+  <link name="world"/>
+  <!-- Fixed joint anchoring Allegro to world -->
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="palm_lower"/>
+    <!-- <origin xyz="0 0 0" rpy="0 3.14 0"/> -->
+    <origin xyz="-0.021 0.0355 0" rpy="0 3.14 0"/>
+
+  </joint>
+
+  <!-- =============== LINK: palm_lower =============== -->
+  <link name="palm_lower">
+    <visual>
+      <origin xyz="-0.020095 0.025758 -0.034722" rpy="0 0 0" />
+      <geometry>
+        <!-- 改为相对路径 -->
+        <mesh filename="palm_lower.stl" />
+      </geometry>
+      <material name="palm_lower_material">
+        <color rgba="0.603922 0.149020 0.149020 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.020095 0.025758 -0.034722" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="palm_lower.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.237" />
+      <inertia ixx="0.000354094" ixy="-0.000001193" ixz="-0.000002445"
+               iyy="0.000260915" iyz="-0.000002905" izz="0.000529257" />
+    </inertial>
+  </link>
+
+  <!-- =============== LINK: mcp_joint =============== -->
+  <link name="mcp_joint_0">
+    <visual>
+      <origin xyz="0.008407 0.007766 0.014657" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="mcp_joint.stl"/>
+      </geometry>
+      <material name="mcp_joint_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.008407 0.007766 0.014657" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="mcp_joint.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.044" />
+      <inertia ixx="0.000011499" ixy="0.000003049" ixz="0.000000121"
+               iyy="0.000007796" iyz="0.000000112" izz="0.000014759" />
+    </inertial>
+  </link>
+
+  <!-- =============== LINK: pip =============== -->
+  <link name="pip_0">
+    <visual>
+      <origin xyz="0.009643 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+      <material name="pip_material">
+        <color rgba="0.749020 0.749020 0.749020 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.009643 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.032" />
+      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004"
+               iyy="0.000002862" iyz="0.000000011" izz="0.000004234" />
+    </inertial>
+  </link>
+
+  <!-- =============== LINK: dip =============== -->
+  <link name="dip_0">
+    <visual>
+      <!-- 原始 rpy ~ -3.1415926535 => -pi -->
+      <origin xyz="0.021133 -0.008432 0.009785" rpy="-3.141593 0 0" />
+      <geometry>
+        <mesh filename="dip.stl"/>
+      </geometry>
+      <material name="dip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.021133 -0.008432 0.009785" rpy="-3.141593 0 0" />
+      <geometry>
+        <mesh filename="dip.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.037" />
+      <inertia ixx="0.000005542" ixy="-0.000000607" ixz="-0.000000017"
+               iyy="0.000005727" iyz="-0.000000023" izz="0.000006682" />
+    </inertial>
+  </link>
+
+  <!-- =============== LINK: fingertip =============== -->
+  <link name="fingertip_0">
+    <visual>
+      <!-- 原始 rpy ~ 3.1415926535 => pi -->
+      <origin xyz="0.00000 -0.014 0.014500" rpy="3.141593 0 0" />
+      <geometry>
+        <mesh filename="h101.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="fingertip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.00000 -0.014 0.014500" rpy="3.141593 0 0" />
+      <geometry>
+        <mesh filename="h101.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.016" />
+      <inertia ixx="0.000003368" ixy="0.000000115" ixz="0"
+               iyy="0.000001556" iyz="0" izz="0.000002863" />
+    </inertial>
+  </link>
+
+  <!-- =============== JOINT: 0 =============== -->
+  <joint name="joint_0_0" type="revolute">
+    <origin xyz="-0.012200 0.038100 0.014500"
+            rpy="-1.570796 0 1.570796" />
+    <parent link="mcp_joint_0" />
+    <child link="pip_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-1.047" upper="1.047"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <!-- =============== JOINT: 1 =============== -->
+  <joint name="joint_1_0" type="revolute">
+    <origin xyz="-0.007095 0.023058 -0.018722"
+            rpy="1.570796 1.570796 0" />
+    <parent link="palm_lower" />
+    <child link="mcp_joint_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.314" upper="2.23"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <!-- =============== JOINT: 2 =============== -->
+  <joint name="joint_2_0" type="revolute">
+    <origin xyz="0.015000 0.014300 -0.013000"
+            rpy="1.570796 -1.570796 0" />
+    <parent link="pip_0" />
+    <child link="dip_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.506" upper="1.885"/>  
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <!-- =============== JOINT: 3 =============== -->
+  <joint name="joint_3_0" type="revolute">
+    <origin xyz="0 -0.0361 0.0" rpy="0 0 0" />
+    <parent link="dip_0" />
+    <child link="fingertip_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.366" upper="2.042"/>   
+    <joint_properties friction="0.0"/>
+  </joint>
+
+
+  <link name="mcp_joint_2_0">
+    <visual>
+      <origin xyz="0.008407 0.007766 0.014657" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="mcp_joint.stl"/>
+      </geometry>
+      <material name="mcp_joint_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.008407 0.007766 0.014657" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="mcp_joint.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.044" />
+      <inertia ixx="0.000011499" ixy="0.000003049" ixz="0.000000121"
+               iyy="0.000007796" iyz="0.000000112" izz="0.000014759" />
+    </inertial>
+  </link>
+
+  <link name="pip_2_0">
+    <visual>
+      <origin xyz="0.009643 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+      <material name="pip_material">
+        <color rgba="0.749020 0.749020 0.749020 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.009643 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.032" />
+      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004"
+               iyy="0.000002862" iyz="0.000000011" izz="0.000004234" />
+    </inertial>
+  </link>
+
+  <link name="dip_2_0">
+    <visual>
+      <origin xyz="0.021133 -0.008432 0.009785" rpy="-3.141593 0 0" />
+      <geometry>
+        <mesh filename="dip.stl"/>
+      </geometry>
+      <material name="dip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.021133 -0.008432 0.009785" rpy="-3.141593 0 0" />
+      <geometry>
+        <mesh filename="dip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.037" />
+      <inertia ixx="0.000005542" ixy="-0.000000607" ixz="-0.000000017"
+               iyy="0.000005727" iyz="-0.000000023" izz="0.000006682" />
+    </inertial>
+  </link>
+
+  <link name="fingertip_2_0">
+    <visual>
+      <!-- 原始 rpy ~ 3.1415926535 => pi -->
+      <origin xyz="0.00000 -0.014 0.014500" rpy="3.141593 0 0" />
+      <geometry>
+        <mesh filename="h101.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="fingertip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.00000 -0.014 0.014500" rpy="3.141593 0 0" />
+      <geometry>
+        <mesh filename="h101.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.016" />
+      <inertia ixx="0.000003368" ixy="0.000000115" ixz="0"
+               iyy="0.000001556" iyz="0" izz="0.000002863" />
+    </inertial>
+  </link>
+
+  <joint name="joint_4_0" type="revolute">
+    <origin xyz="-0.012200 0.038100 0.014500"
+            rpy="-1.570796 0 1.570796" />
+    <parent link="mcp_joint_2_0" />
+    <child link="pip_2_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-1.047" upper="1.047"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_5_0" type="revolute">
+    <origin xyz="-0.007095 -0.022392 -0.018722"
+            rpy="1.570796 1.570796 0" />
+    <parent link="palm_lower" />
+    <child link="mcp_joint_2_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.314" upper="2.23"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_6_0" type="revolute">
+    <origin xyz="0.015000 0.014300 -0.013000"
+            rpy="1.570796 -1.570796 0" />
+    <parent link="pip_2_0" />
+    <child link="dip_2_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.506" upper="1.885"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_7_0" type="revolute">
+    <origin xyz="0 -0.036100 0.00000" rpy="0 0 0" />
+    <parent link="dip_2_0" />
+    <child link="fingertip_2_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.366" upper="2.042"/>   
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <link name="mcp_joint_3_0">
+    <visual>
+      <origin xyz="0.008407 0.007766 0.014657" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="mcp_joint.stl"/>
+      </geometry>
+      <material name="mcp_joint_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.008407 0.007766 0.014657" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="mcp_joint.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.044" />
+      <inertia ixx="0.000011499" ixy="0.000003049" ixz="0.000000121"
+               iyy="0.000007796" iyz="0.000000112" izz="0.000014759" />
+    </inertial>
+  </link>
+
+  <link name="pip_3_0">
+    <visual>
+      <origin xyz="0.009643 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+      <material name="pip_material">
+        <color rgba="0.749020 0.749020 0.749020 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.009643 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.032" />
+      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004"
+               iyy="0.000002862" iyz="0.000000011" izz="0.000004234" />
+    </inertial>
+  </link>
+
+  <link name="dip_3_0">
+    <visual>
+      <origin xyz="0.021133 -0.008432 0.009785" rpy="-3.141593 0 0" />
+      <geometry>
+        <mesh filename="dip.stl"/>
+      </geometry>
+      <material name="dip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.021133 -0.008432 0.009785" rpy="-3.141593 0 0" />
+      <geometry>
+        <mesh filename="dip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.037" />
+      <inertia ixx="0.000005542" ixy="-0.000000607" ixz="-0.000000017"
+               iyy="0.000005727" iyz="-0.000000023" izz="0.000006682" />
+    </inertial>
+  </link>
+
+  <link name="fingertip_3_0">
+    <visual>
+      <!-- 原始 rpy ~ 3.1415926535 => pi -->
+      <origin xyz="0.00000 -0.014 0.014500" rpy="3.141593 0 0" />
+      <geometry>
+        <mesh filename="h101.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="fingertip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.00000 -0.014 0.014500" rpy="3.141593 0 0" />
+      <geometry>
+        <mesh filename="h101.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.016" />
+      <inertia ixx="0.000003368" ixy="0.000000115" ixz="0"
+               iyy="0.000001556" iyz="0" izz="0.000002863" />
+    </inertial>
+  </link>
+
+  <joint name="joint_8_0" type="revolute">
+    <origin xyz="-0.012200 0.038100 0.014500"
+            rpy="-1.570796 0 1.570796" />
+    <parent link="mcp_joint_3_0" />
+    <child link="pip_3_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-1.047" upper="1.047"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_9_0" type="revolute">
+    <origin xyz="-0.007095 -0.067842 -0.018722"
+            rpy="1.570796 1.570796 0" />
+    <parent link="palm_lower" />
+    <child link="mcp_joint_3_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.314" upper="2.23"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_10_0" type="revolute">
+    <origin xyz="0.015000 0.014300 -0.013000"
+            rpy="1.570796 -1.570796 0" />
+    <parent link="pip_3_0" />
+    <child link="dip_3_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.506" upper="1.885"/>  
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_11_0" type="revolute">
+    <origin xyz="0 -0.036100 0.0" rpy="0 0 0" />
+    <parent link="dip_3_0" />
+    <child link="fingertip_3_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.366" upper="2.042"/>   
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <!-- ======================================================
+       LINK: pip_4, thumb_pip, thumb_dip, thumb_fingertip
+       JOINT: 12, 13, 14, 15
+       ====================================================== -->
+
+  <link name="pip_4_0">
+    <visual>
+      <origin xyz="-0.005357 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+      <material name="pip_material">
+        <color rgba="0.749020 0.749020 0.749020 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.005357 0.000300 0.000784" rpy="-1.570796 -1.570796 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.032" />
+      <inertia ixx="0.000004798" ixy="0.000000012" ixz="0.000000004"
+               iyy="0.000002862" iyz="0.000000011" izz="0.000004234" />
+    </inertial>
+  </link>
+
+  <link name="thumb_pip_0">
+    <visual>
+      <origin xyz="0.011962 0 -0.015853" rpy="1.570796 0 0" />
+      <geometry>
+        <mesh filename="thumb_pip.stl"/>
+      </geometry>
+      <material name="thumb_pip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.011962 0 -0.015853" rpy="1.570796 0 0" />
+      <geometry>
+        <mesh filename="thumb_pip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.003" />
+      <inertia ixx="0.000000593" ixy="0" ixz="0"
+               iyy="0.000000549" iyz="0" izz="0.000000224" />
+    </inertial>
+  </link>
+
+  <link name="thumb_dip_0">
+    <visual>
+      <origin xyz="0.043969 0.057953 -0.008629" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="thumb_dip.stl"/>
+      </geometry>
+      <material name="thumb_dip_material">
+        <color rgba="0.866667 0.866667 0.050980 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.043969 0.057953 -0.008629" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="thumb_dip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.038" />
+      <inertia ixx="0.000008474" ixy="0.000000241" ixz="0.000000026"
+               iyy="0.000003841" iyz="0.000000025" izz="0.000007679" />
+    </inertial>
+  </link>
+
+  <link name="thumb_fingertip_0">
+    <visual>
+      <origin xyz="0.0138 -0.00535 -0.014" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+      <material name="thumb_fingertip_material">
+        <color rgba="0.603922 0.149020 0.149020 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0138 -0.00535 -0.014" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="pip.stl"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.049" />
+      <inertia ixx="0.000020372" ixy="-0.000000489" ixz="-0.000000030"
+               iyy="0.000004336" iyz="-0.000000097" izz="0.000019845" />
+    </inertial>
+  </link>
+
+  <link name="thumb_extra">
+    <visual>
+      <origin xyz="0.0 -0.0 -0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="cable_spacer.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="thumb_fingertip_material">
+        <color rgba="0.603922 0.149020 0.149020 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="cable_spacer.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0" />
+      <inertia ixx="0.000020372" ixy="-0.000000489" ixz="-0.000000030"
+               iyy="0.000004336" iyz="-0.000000097" izz="0.000019845" />
+    </inertial>
+  </link>
+
+  <joint name="fixed_thumb_part" type="fixed">
+    <parent link="thumb_fingertip_0"/>
+    <child link="thumb_extra"/>
+    <origin rpy="0.0 0.0 0.0" xyz="-0.0089 -0.0265 0.002"/>
+  </joint>
+
+  <joint name="joint_12_0" type="revolute">
+    <origin xyz="-0.069395 -0.001242 -0.021622"
+            rpy="0 1.570796 0" />
+    <parent link="palm_lower" />
+    <child link="pip_4_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.349" upper="2.094"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_13_0" type="revolute">
+    <origin xyz="0 0.014300 -0.013000"
+            rpy="1.570796 -1.570796 0" />
+    <parent link="pip_4_0" />
+    <child link="thumb_pip_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-0.47" upper="2.443"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_14_0" type="revolute">
+    <origin xyz="0 0.014500 -0.017000"
+            rpy="-1.570796 0 0" />
+    <parent link="thumb_pip_0" />
+    <child link="thumb_dip_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-1.20" upper="1.90"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <joint name="joint_15_0" type="revolute">
+    <origin xyz="0. 0.0465 0"
+            rpy="0 0 3.141593" />
+    <parent link="thumb_dip_0" />
+    <child link="thumb_fingertip_0" />
+    <axis xyz="0 0 -1"/>
+    <limit effort="0.95" velocity="8.48" lower="-1.34" upper="1.88"/>
+    <joint_properties friction="0.0"/>
+  </joint>
+
+  <!-- ======================================================
+       LINK: link_0_tcp index finger
+       Tip:digitac_tip_link_0
+       ====================================================== -->
+
+
+  <link name="link_0_tcp">
+    <!-- <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.002"/>
+      </geometry>
+       <material name="TransparentRed"/>
+    </visual> -->
+    <inertial>
+      <mass value="0.0"/>
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="joint_link_0_tcp" type="fixed">
+    <parent link="digitac_tip_index_front"/>
+    <child link="link_0_tcp"/>
+    <origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0205"/>
+  </joint>
+
+  <joint name="digitac_ee_joint_0" type="fixed">
+      <parent link="fingertip_0"/>
+      <child link="tip_index_back"/>
+      <origin rpy="-1.57 3.14 0.0" xyz="-0.0 -0.0451 0.0404"/>
+  </joint>
+
+  <link name="tip_index_back">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 -0.0279491989408377 0.0117210218061305" rpy="0 0 0"/>
+      <mass value="0.00326113541587292"/>
+      <inertia ixx="6.53232321038069E-07" ixy="0" ixz="0"
+               iyy="7.92441510104195E-07" iyz="-1.62605434120917E-09"
+               izz="2.94226335541226E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- STL is in the same folder as this URDF -->
+        <mesh filename="base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="digitac_tip_index_front">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 0.005 -0.00994132010789593" rpy="0 0 0"/>
+      <mass value="0.00234714866954073"/>
+      <inertia ixx="4.38915463385616E-07" ixy="0" ixz="0"
+               iyy="3.01366566349474E-07" iyz="0"
+               izz="5.75108486047878E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.0154 0.0252 -0.0" rpy="3.14159 0 0"/>
+      <geometry>
+        <mesh filename="tip_shell_black.obj" scale="0.00106 0.001044 0.001044"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 -0.003" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="Empty_Link.STL" scale="0.85 0.85 0.85"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="index_tip" type="fixed">
+    <origin xyz="0 0 0" rpy="1.5707963267949 0 3.14159265358979"/>
+    <parent link="tip_index_back"/>
+    <child link="digitac_tip_index_front"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <!-- ======================================================
+       LINK: link_2_tcp middle finger
+       Tip: digitac_tip_link_2
+       ====================================================== -->
+
+
+  <link name="link_2_tcp">
+    <!-- <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.002"/>
+      </geometry>
+       <material name="TransparentRed"/>
+    </visual> -->
+    <inertial>
+      <mass value="0.0"/>
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="joint_link_2_tcp" type="fixed">
+    <parent link="digitac_tip_mid_front"/>
+    <child link="link_2_tcp"/>
+    <origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0205"/>
+  </joint>
+
+  <link name="tip_mid_back">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 -0.0279491989408377 0.0117210218061305" rpy="0 0 0"/>
+      <mass value="0.00326113541587292"/>
+      <inertia ixx="6.53232321038069E-07" ixy="0" ixz="0"
+               iyy="7.92441510104195E-07" iyz="-1.62605434120917E-09"
+               izz="2.94226335541226E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- STL is in the same folder as this URDF -->
+        <mesh filename="base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="digitac_tip_mid_front">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 0.005 -0.00994132010789593" rpy="0 0 0"/>
+      <mass value="0.00234714866954073"/>
+      <inertia ixx="4.38915463385616E-07" ixy="0" ixz="0"
+               iyy="3.01366566349474E-07" iyz="0"
+               izz="5.75108486047878E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.0154 0.0252 -0.0" rpy="3.14159 0 0"/>
+      <geometry>
+        <mesh filename="tip_shell_black.obj" scale="0.00106 0.001044 0.001044"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 -0.003" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="Empty_Link.STL" scale="0.85 0.85 0.85"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="mid_tip" type="fixed">
+    <origin xyz="0 0 0" rpy="1.5707963267949 0 3.14159265358979"/>
+    <parent link="tip_mid_back"/>
+    <child link="digitac_tip_mid_front"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="digitac_ee_joint_2" type="fixed">
+      <parent link="fingertip_2_0"/>
+      <child link="tip_mid_back"/>
+      <origin rpy="-1.57 1.57 0.0" xyz="-0.0285 -0.0451 0.0145"/>
+  </joint>
+  <!-- ======================================================
+       LINK: link_3_tcp pinky finger
+        Tip: digitac_tip_link_3
+       ====================================================== -->
+
+  <link name="link_3_tcp">
+    <!-- <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.002"/>
+      </geometry>
+       <material name="TransparentRed"/>
+    </visual> -->
+    <inertial>
+      <mass value="0.0"/>
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="joint_link_3_tcp" type="fixed">
+    <parent link="digitac_tip_pinky_front"/>
+    <child link="link_3_tcp"/>
+    <origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0205"/>
+  </joint>
+
+  <link name="tip_pinky_back">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 -0.0279491989408377 0.0117210218061305" rpy="0 0 0"/>
+      <mass value="0.00326113541587292"/>
+      <inertia ixx="6.53232321038069E-07" ixy="0" ixz="0"
+               iyy="7.92441510104195E-07" iyz="-1.62605434120917E-09"
+               izz="2.94226335541226E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- STL is in the same folder as this URDF -->
+        <mesh filename="base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="digitac_tip_pinky_front">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 0.005 -0.00994132010789593" rpy="0 0 0"/>
+      <mass value="0.00234714866954073"/>
+      <inertia ixx="4.38915463385616E-07" ixy="0" ixz="0"
+               iyy="3.01366566349474E-07" iyz="0"
+               izz="5.75108486047878E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.0154 0.0252 -0.0" rpy="3.14159 0 0"/>
+      <geometry>
+        <mesh filename="tip_shell_black.obj" scale="0.00106 0.001044 0.001044"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 -0.003" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="Empty_Link.STL" scale="0.85 0.85 0.85"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pinky_tip" type="fixed">
+    <origin xyz="0 0 0" rpy="1.5707963267949 0 3.14159265358979"/>
+    <parent link="tip_pinky_back"/>
+    <child link="digitac_tip_pinky_front"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="digitac_ee_joint_3" type="fixed">
+      <parent link="fingertip_3_0"/>
+      <child link="tip_pinky_back"/>
+      <origin rpy="-1.57 0.0 0.0" xyz="-0.0 -0.0451 -0.0115"/>
+  </joint>
+
+
+
+  <!-- ======================================================
+       LINK: link_1_tcp thumb finger
+        Tip: digitac_tip_link_1
+       ====================================================== -->
+
+  <link name="link_1_tcp">
+    <!-- <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.002"/>
+      </geometry>
+       <material name="TransparentRed"/>
+    </visual> -->
+    <inertial>
+      <mass value="0.0"/>
+      <origin rpy="0.0 0.0 1.57" xyz="0.0 0.0 0.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="digitac_ee_joint_1" type="fixed">
+      <parent link="thumb_extra"/>
+      <child link="tip_thumb_back"/>
+      <origin rpy="-1.57 2.355 0.0" xyz="-0.008 -0.028 0.003"/>
+  </joint>
+
+
+  <joint name="joint_link_1_tcp" type="fixed">
+    <parent link="digitac_tip_thumb_front"/>
+    <child link="link_1_tcp"/>
+    <origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0205"/>
+  </joint>
+
+  <link name="tip_thumb_back">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 -0.0279491989408377 0.0117210218061305" rpy="0 0 0"/>
+      <mass value="0.00326113541587292"/>
+      <inertia ixx="6.53232321038069E-07" ixy="0" ixz="0"
+               iyy="7.92441510104195E-07" iyz="-1.62605434120917E-09"
+               izz="2.94226335541226E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- STL is in the same folder as this URDF -->
+        <mesh filename="base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="digitac_tip_thumb_front">
+    <inertial>
+      <!-- tiny numerical noise removed -->
+      <origin xyz="0 0.005 -0.00994132010789593" rpy="0 0 0"/>
+      <mass value="0.00234714866954073"/>
+      <inertia ixx="4.38915463385616E-07" ixy="0" ixz="0"
+               iyy="3.01366566349474E-07" iyz="0"
+               izz="5.75108486047878E-07"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.0154 0.0252 -0.0" rpy="3.14159 0 0"/>
+      <geometry>
+        <mesh filename="tip_shell_black.obj" scale="0.00106 0.001044 0.001044"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.00000 0.00000 0.00000 1.00000"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 -0.003" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="Empty_Link.STL" scale="0.85 0.85 0.85"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="thumb_tip" type="fixed">
+    <origin xyz="0 0 0" rpy="1.5707963267949 0 3.14159265358979"/>
+    <parent link="tip_thumb_back"/>
+    <child link="digitac_tip_thumb_front"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+
+
+  <link name="pivot_point_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.035 0.045 -0.025"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+       <material name="TransparentRed"/>
+    </visual>
+    <inertial>
+      <mass value="0.0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="pivot_point_joint" type="fixed">
+    <parent link="palm_lower"/>
+    <child link="pivot_point_link"/>
+    <origin rpy="-1.57 0.0 -1.57" xyz="0 0 -0.10"/>
+	</joint>
+
+
+	<link name="link_0_camera">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.00000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+			<material name="mat_10">
+				<color rgba="0.90000 0.00000 0.20000 0.50000" />
+			</material>
+		</visual>
+	</link>
+
+	<joint name="camera_joint_0" type="fixed">
+		<parent link="digitac_tip_index_front"/>
+		<child link="link_0_camera"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0255"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+
+	<link name="link_1_camera">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.00000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+			<material name="mat_10">
+				<color rgba="0.90000 0.00000 0.20000 0.50000" />
+			</material>
+		</visual>
+	</link>
+
+	<joint name="camera_joint" type="fixed">
+		<parent link="digitac_tip_thumb_front"/>
+		<child link="link_1_camera"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0255"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+
+	<link name="link_2_camera">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.00000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+			<material name="mat_10">
+				<color rgba="0.90000 0.00000 0.20000 0.50000" />
+			</material>
+		</visual>
+	</link>
+
+	<joint name="camera_joint_2" type="fixed">
+		<parent link="digitac_tip_mid_front"/>
+		<child link="link_2_camera"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0255"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+
+	<link name="link_3_camera">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.00000"/>
+			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<sphere radius="0.00100"/>
+			</geometry>
+			<material name="mat_10">
+				<color rgba="0.90000 0.00000 0.20000 0.50000" />
+			</material>
+		</visual>
+	</link>
+
+	<joint name="camera_joint_3" type="fixed">
+		<parent link="digitac_tip_pinky_front"/>
+		<child link="link_3_camera"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0255"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
+
+</robot>

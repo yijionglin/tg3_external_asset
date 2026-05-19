@@ -18,7 +18,7 @@
 			<geometry>
 				<mesh filename="package://tactile_sim_assets/robot_arm_assets/ur5/visual/base.obj" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
-			<material name="LightGrey">
+			<material name="mat_0">
 				<color rgba="0.70000 0.70000 0.70000 1.00000" />
 			</material>
 		</visual>
@@ -40,7 +40,7 @@
 			<geometry>
 				<mesh filename="package://tactile_sim_assets/robot_arm_assets/ur5/visual/shoulder.obj" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
-			<material name="DarkGrey">
+			<material name="mat_1">
 				<color rgba="0.20000 0.20000 0.20000 1.00000" />
 			</material>
 		</visual>
@@ -62,9 +62,6 @@
 			<geometry>
 				<mesh filename="package://tactile_sim_assets/robot_arm_assets/ur5/visual/upperarm.obj" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
-			<material name="LightGrey">
-				<color rgba="0.70000 0.70000 0.70000 1.00000" />
-			</material>
 		</visual>
 		<!-- <collision>
 			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
@@ -84,7 +81,7 @@
 			<geometry>
 				<mesh filename="package://tactile_sim_assets/robot_arm_assets/ur5/visual/forearm.obj" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
-			<material name="DarkGrey">
+			<material name="mat_3">
 				<color rgba="0.20000 0.20000 0.20000 1.00000" />
 			</material>
 		</visual>
@@ -106,7 +103,7 @@
 			<geometry>
 				<mesh filename="package://tactile_sim_assets/robot_arm_assets/ur5/visual/wrist1.obj" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
-			<material name="LightGrey">
+			<material name="mat_4">
 				<color rgba="0.70000 0.70000 0.70000 1.00000" />
 			</material>
 		</visual>
@@ -128,7 +125,7 @@
 			<geometry>
 				<mesh filename="package://tactile_sim_assets/robot_arm_assets/ur5/visual/wrist2.obj" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
-			<material name="DarkGrey">
+			<material name="mat_5">
 				<color rgba="0.20000 0.20000 0.20000 1.00000" />
 			</material>
 		</visual>
@@ -150,7 +147,7 @@
 			<geometry>
 				<mesh filename="package://tactile_sim_assets/robot_arm_assets/ur5/visual/wrist3.obj" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
-			<material name="LightGrey">
+			<material name="mat_6">
 				<color rgba="0.70000 0.70000 0.70000 1.00000" />
 			</material>
 		</visual>
@@ -161,6 +158,30 @@
 			</geometry>
 		</collision> -->
 	</link>
+	<link name="adaptor_link">
+		<inertial>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<mass value="0.18790"/>
+			<inertia ixx="0.00014" ixy="0" ixz="0" iyy="0.00022" iyz="0" izz="0.00013"/>
+		</inertial>
+		<visual>
+			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<geometry>
+				<mesh filename="package://tactile_sim_assets/sensor_assets/leap_hand_tactip/AllergroAdaptor.stl" scale="0.001 0.00100 0.00100"/>
+			</geometry>
+			<material name="mat_6">
+				<color rgba="0.70000 0.70000 0.70000 1.00000" />
+			</material>
+		</visual>
+	</link>
+	<joint name="adaptor_joint" type="fixed">
+		<parent link="ee_link"/>
+		<child link="adaptor_link"/>
+		<dynamics damping="1.0" friction="0.0001"/>
+		<origin rpy="1.57 0 -1.57" xyz="-0.015 0.02 -0.007"/>
+		<axis xyz="0.00000 0.00000 0.00000"/>
+	</joint>
+
 	<link name="ee_link">
 		<inertial>
 			<origin rpy="-3.14000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
@@ -172,7 +193,7 @@
 			<geometry>
 				<sphere radius="0.00100"/>
 			</geometry>
-			<material name="Red">
+			<material name="mat_7">
 				<color rgba="0.90000 0.00000 0.20000 1.00000" />
 			</material>
 		</visual>
@@ -249,7 +270,7 @@
 		<visual>
 			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
 			<geometry>
-				<mesh filename="package://tactile_sim_assets/sensor_assets/standard_tactip/body/tactip_body.obj" scale="1.00000 1.00000 1.00000"/>
+				<mesh filename="package://tactile_sim_assets/sensor_assets/leap_hand_tactip/body/base_link.STL" scale="1.00000 1.00000 1.00000"/>
 			</geometry>
 			<material name="mat_8">
 				<color rgba="0.80000 0.80000 0.80000 1.00000" />
@@ -269,11 +290,11 @@
 			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
 		</inertial>
 		<visual>
-			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+			<origin xyz="-0.0154 0.0252 -0.0" rpy="3.14159 0 0"/>
 			<geometry>
-				<mesh filename="package://tactile_sim_assets/sensor_assets/standard_tactip/tip/skin_black.obj" scale="1.00000 1.00000 1.00000"/>
+				<mesh filename="package://tactile_sim_assets/sensor_assets/leap_hand_tactip/tip/tip_shell_black.obj" scale="0.00106 0.001044 0.001044"/>
 			</geometry>
-			<material name="Black">
+			<material name="mat_10">
 				<color rgba="0.00000 0.00000 0.00000 1.00000" />
 			</material>
 		</visual>
@@ -300,6 +321,7 @@
 			</material>
 		</visual> -->
 	</link>
+
 	<link name="link_camera">
 		<inertial>
 			<origin rpy="0.00000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
@@ -317,86 +339,37 @@
 		</visual> -->
 	</link>
 
-	<link name="fake_tcp_link_for_tactile_image">
-		<inertial>
-			<origin rpy="0.00000 -0.00000 1.57000" xyz="0.00000 0.00000 0.00000"/>
-			<mass value="0.00000"/>
-			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
-		</inertial>
-		<visual>
-			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
-			<geometry>
-				<sphere radius="0.00100"/>
-			</geometry>
-			<material name="mat_10">
-				<color rgba="0.90000 0.00000 0.20000 0.50000" />
-			</material>
-		</visual>
-	</link>
-
 	<joint name="joint_dummy1" type="fixed">
 		<parent link="ee_link"/>
 		<child link="tactip_body_link"/>
 		<dynamics damping="1.0" friction="0.0001"/>
-		<origin rpy="-3.14159 0.00000 3.14159" xyz="0.00000 0.00000 0.00000"/>
+		<origin rpy="1.57 3.14 0" xyz="0.00000 0.0138000 -0.06750000"/>
 		<axis xyz="0.00000 0.00000 1.00000"/>
 	</joint>
 	<joint name="tactip_tip_to_body" type="fixed">
 		<parent link="tactip_body_link"/>
 		<child link="tactip_tip_link"/>
 		<dynamics damping="1.0" friction="0.0001"/>
-		<origin rpy="1.57000 -0.00000 0.00000" xyz="0.00000 0.00000 0.06500"/>
+		<origin xyz="0 0 0" rpy="1.5707963267949 0 3.14159265358979"/>
 		<axis xyz="0.00000 0.00000 0.00000"/>
 	</joint>
 
 	
-<!-- this is a fake link for attaching the camera -->
-	<link name="elastomer_tip">
-		<inertial>
-			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
-			<mass value="0.00000"/>
-			<inertia ixx="0.00000" ixy="0" ixz="0" iyy="0.00000" iyz="0" izz="0.00000"/>
-		</inertial>
-		<visual>
-			<origin rpy="0.00000 -0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
-			<geometry>
-				<sphere radius="0.00100"/>
-			</geometry>
-			<material name="mat_10">
-				<color rgba="0.90000 0.00000 0.20000 0.50000" />
-			</material>
-		</visual>
-	</link>
-
-	<joint name="dummy_camera_joint" type="fixed">
-		<parent link="tactip_tip_link"/>
-		<child link="elastomer_tip"/>
-		<dynamics damping="1.0" friction="0.0001"/>
-		<origin rpy="-1.57 -0.00000 0.00000" xyz="0.00000 0.02 -0.0"/>
-		<axis xyz="0.00000 0.00000 0.00000"/>
-	</joint>
-
 	<joint name="tcp_joint" type="fixed">
-		<parent link="tactip_body_link"/>
+		<parent link="tactip_tip_link"/>
 		<child link="tcp_link"/>
 		<dynamics damping="1.0" friction="0.0001"/>
-		<origin rpy="0 0.000 0.000" xyz="0.00000 0.00000 0.06500"/>
+		<origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0205"/>
 		<axis xyz="0.00000 0.00000 0.00000"/>
 	</joint>
 
 	<joint name="camera_joint" type="fixed">
-		<parent link="tactip_body_link"/>
+		<parent link="tactip_tip_link"/>
 		<child link="link_camera"/>
 		<dynamics damping="1.0" friction="0.0001"/>
-		<origin rpy="0 0.000 0.000" xyz="0.00000 0.00000 0.06500"/>
+		<origin rpy="0.0 0.0 -1.5708" xyz="0.0 0.005 -0.0255"/>
 		<axis xyz="0.00000 0.00000 0.00000"/>
 	</joint>
 
-	<joint name="fake_tcp_joint" type="fixed">
-		<parent link="tactip_body_link"/>
-		<child link="fake_tcp_link_for_tactile_image"/>
-		<dynamics damping="1.0" friction="0.0001"/>
-		<origin rpy="0 0.000 0.000" xyz="0.00000 0.00000 0.08500"/>
-		<axis xyz="0.00000 0.00000 0.00000"/>
-	</joint>
+
 </robot>
